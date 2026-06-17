@@ -1,0 +1,556 @@
+/* ============================================================
+   ASSISTENTE DIVERSA — CSS DO FRONT
+   Organização:
+   1. Variáveis e base
+   2. Layout principal
+   3. Cards e bordas com cordão
+   4. Chat e campo de pergunta
+   5. Botões
+   6. Ajustes responsivos
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIÁVEIS E BASE
+   ============================================================ */
+
+:root {
+    --roxo-accenture: #A100FF;
+    --roxo-escuro: #6F00B8;
+    --roxo-claro: #F3E6FF;
+
+    --texto-principal: #111827;
+    --texto-secundario: #374151;
+    --texto-suave: #6B7280;
+
+    --borda-suave: #E5E7EB;
+    --fundo-pagina: #FAFAFA;
+    --branco: #FFFFFF;
+
+    --sombra-card: 0 10px 28px rgba(17, 24, 39, 0.08);
+    --sombra-chat: 0 8px 24px rgba(0, 0, 0, 0.05);
+
+    --raio-card: 22px;
+    --raio-chat: 24px;
+    --raio-hero: 28px;
+    --raio-botao: 14px;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    background:
+        radial-gradient(circle at top left, rgba(161, 0, 255, 0.10), transparent 32%),
+        var(--fundo-pagina) !important;
+}
+
+.gradio-container {
+    max-width: 96vw !important;
+    width: 96vw !important;
+    margin: 0 auto !important;
+    padding: 18px 28px !important;
+    font-family: "Inter", sans-serif !important;
+    background: transparent !important;
+}
+
+label {
+    color: var(--texto-principal) !important;
+}
+
+
+/* ============================================================
+   2. LAYOUT PRINCIPAL
+   ============================================================ */
+
+#linha-principal {
+    width: 100% !important;
+    gap: 28px !important;
+    align-items: flex-start !important;
+}
+
+#coluna-direita {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#linha-botoes {
+    gap: 12px !important;
+}
+
+
+/* ============================================================
+   3. CARDS E BORDAS COM CORDÃO
+   ============================================================ */
+
+#hero,
+#chatbot,
+.card-info,
+#card-sugestoes,
+#pergunta-textbox {
+    position: relative;
+    overflow: hidden;
+    background: var(--branco);
+    box-shadow: var(--sombra-card);
+}
+
+#hero::before,
+#chatbot::before,
+.card-info::before,
+#card-sugestoes::before,
+#pergunta-textbox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("__CORDAO_TEA_URL__");
+    background-repeat: repeat;
+    background-position: center;
+    pointer-events: none;
+    z-index: 0;
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
+#hero > *,
+#chatbot > *,
+.card-info > *,
+#card-sugestoes > *,
+#pergunta-textbox > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Hero superior */
+#hero {
+    border-radius: var(--raio-hero);
+    padding: 34px;
+    color: var(--texto-principal);
+    margin-bottom: 24px;
+}
+
+#hero::before {
+    border-radius: var(--raio-hero);
+    padding: 10px;
+    background-size: 180px;
+    opacity: 0.95;
+}
+
+#hero p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+    margin-bottom: 0;
+}
+
+.titulo-grupo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 8px 0;
+    color: var(--texto-principal);
+    font-size: 36px;
+}
+
+.icone-grupo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    margin-right: 12px;
+}
+
+.detalhe-roxo {
+    color: var(--roxo-accenture);
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 1;
+}
+
+
+/* Cards laterais */
+.card-info,
+#card-sugestoes {
+    border-radius: var(--raio-card);
+    padding: 22px !important;
+}
+
+.card-info::before,
+#card-sugestoes::before {
+    border-radius: var(--raio-card);
+    padding: 8px;
+    background-size: 135px;
+    opacity: 0.95;
+}
+
+.card-info h3,
+#card-sugestoes h3 {
+    color: var(--texto-principal);
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.small-text {
+    font-size: 16px;
+    color: var(--texto-secundario);
+    line-height: 1.6;
+}
+
+#card-sugestoes .prose,
+#card-sugestoes .gr-markdown {
+    margin: 0 !important;
+}
+
+#lista-sugestoes {
+    max-height: 210px;
+    overflow-y: auto;
+    padding-right: 4px;
+    margin-top: 10px;
+}
+
+#lista-sugestoes .pergunta-btn {
+    margin-bottom: 10px;
+}
+
+#lista-sugestoes .pergunta-btn:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ============================================================
+   4. CHAT E CAMPO DE PERGUNTA
+   ============================================================ */
+
+#chatbot {
+    min-height: 560px !important;
+    height: 58vh !important;
+    border-radius: var(--raio-chat) !important;
+    background: var(--branco) !important;
+    box-shadow: var(--sombra-chat);
+    isolation: isolate;
+}
+
+#chatbot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("__LOGO_ACCENTURE_URL__");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 220px auto;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#chatbot::before {
+    border-radius: var(--raio-chat);
+    padding: 9px;
+    background-size: 160px;
+    opacity: 0.95;
+    z-index: 3;
+}
+
+#chatbot > div {
+    position: relative;
+    z-index: 2;
+}
+
+#chatbot,
+#chatbot * {
+    font-size: 17px !important;
+    line-height: 1.6 !important;
+}
+
+#chatbot label {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+#pergunta-textbox {
+    border-radius: 20px !important;
+    margin-top: 14px !important;
+}
+
+#pergunta-textbox::before {
+    border-radius: 20px;
+    padding: 7px;
+    background-size: 130px;
+    opacity: 0.90;
+}
+
+#pergunta-textbox label {
+    color: var(--roxo-escuro) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+}
+
+#pergunta-textbox textarea,
+textarea {
+    border-radius: 14px !important;
+    border: 1px solid rgba(161, 0, 255, 0.35) !important;
+    background: var(--branco) !important;
+    color: var(--texto-principal) !important;
+}
+
+#pergunta-textbox textarea {
+    font-size: 17px !important;
+    line-height: 1.5 !important;
+    min-height: 80px !important;
+    padding: 16px !important;
+}
+
+#pergunta-textbox textarea:focus,
+textarea:focus {
+    border-color: var(--roxo-accenture) !important;
+    box-shadow: 0 0 0 3px rgba(161, 0, 255, 0.14) !important;
+}
+
+
+/* ============================================================
+   5. BOTÕES
+   ============================================================ */
+
+button {
+    border-radius: var(--raio-botao) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    min-height: 48px !important;
+    transition:
+        background-color 80ms linear,
+        color 80ms linear,
+        border-color 80ms linear !important;
+}
+
+
+/* ------------------------------------------------------------
+   Botões principais
+   Esta versão força o hover em várias estruturas possíveis do Gradio.
+   Corrige também o texto claro/apagado em estado normal ou desabilitado.
+   ------------------------------------------------------------ */
+
+/* Estado padrão: branco com texto roxo */
+#btn-enviar,
+#btn-limpar,
+#btn-enviar *,
+#btn-limpar *,
+#btn-enviar button,
+#btn-limpar button,
+#btn-enviar button *,
+#btn-limpar button *,
+.botao-principal,
+.botao-principal *,
+.botao-principal button,
+.botao-principal button *,
+button#btn-enviar,
+button#btn-limpar,
+button#btn-enviar *,
+button#btn-limpar * {
+    color: var(--roxo-escuro) !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* Fundo e borda padrão */
+#btn-enviar,
+#btn-limpar,
+#btn-enviar button,
+#btn-limpar button,
+.botao-principal,
+.botao-principal button,
+button#btn-enviar,
+button#btn-limpar {
+    background: var(--branco) !important;
+    background-color: var(--branco) !important;
+    background-image: none !important;
+    border: 1px solid var(--roxo-accenture) !important;
+    box-shadow: none !important;
+}
+
+/* Estado desabilitado: mantém texto visível */
+#btn-enviar:disabled,
+#btn-limpar:disabled,
+#btn-enviar button:disabled,
+#btn-limpar button:disabled,
+.botao-principal:disabled,
+.botao-principal button:disabled,
+button#btn-enviar:disabled,
+button#btn-limpar:disabled {
+    background: var(--branco) !important;
+    background-color: var(--branco) !important;
+    background-image: none !important;
+    color: var(--roxo-escuro) !important;
+    border: 1px solid var(--roxo-accenture) !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* Hover: roxo com texto branco */
+#btn-enviar:hover,
+#btn-limpar:hover,
+#btn-enviar:hover *,
+#btn-limpar:hover *,
+#btn-enviar:hover button,
+#btn-limpar:hover button,
+#btn-enviar:hover button *,
+#btn-limpar:hover button *,
+#btn-enviar button:hover,
+#btn-limpar button:hover,
+#btn-enviar button:hover *,
+#btn-limpar button:hover *,
+.botao-principal:hover,
+.botao-principal:hover *,
+.botao-principal:hover button,
+.botao-principal:hover button *,
+.botao-principal button:hover,
+.botao-principal button:hover *,
+button#btn-enviar:hover,
+button#btn-limpar:hover,
+button#btn-enviar:hover *,
+button#btn-limpar:hover * {
+    background: var(--roxo-accenture) !important;
+    background-color: var(--roxo-accenture) !important;
+    background-image: none !important;
+    color: var(--branco) !important;
+    border-color: var(--roxo-accenture) !important;
+    opacity: 1 !important;
+    filter: none !important;
+    box-shadow: none !important;
+}
+
+/* Clique: roxo mais escuro */
+#btn-enviar:active,
+#btn-limpar:active,
+#btn-enviar:active *,
+#btn-limpar:active *,
+#btn-enviar button:active,
+#btn-limpar button:active,
+.botao-principal:active,
+.botao-principal:active *,
+.botao-principal button:active,
+.botao-principal button:active *,
+button#btn-enviar:active,
+button#btn-limpar:active,
+button#btn-enviar:active *,
+button#btn-limpar:active * {
+    background: var(--roxo-escuro) !important;
+    background-color: var(--roxo-escuro) !important;
+    background-image: none !important;
+    color: var(--branco) !important;
+    border-color: var(--roxo-escuro) !important;
+}
+
+
+/* Perguntas sugeridas — hover rápido e área sensível maior */
+#lista-sugestoes .pergunta-btn,
+#lista-sugestoes .pergunta-btn button,
+#lista-sugestoes button {
+    width: 100% !important;
+    min-height: 56px !important;
+    padding: 14px 16px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    white-space: normal !important;
+    text-align: center !important;
+    cursor: pointer !important;
+
+    background: var(--branco) !important;
+    background-color: var(--branco) !important;
+    background-image: none !important;
+    color: var(--roxo-escuro) !important;
+    border: 1px solid rgba(161, 0, 255, 0.70) !important;
+    border-radius: var(--raio-botao) !important;
+    box-shadow: 0 3px 8px rgba(17, 24, 39, 0.05) !important;
+    opacity: 1 !important;
+    filter: none !important;
+
+    transition:
+        background-color 60ms linear,
+        color 60ms linear,
+        border-color 60ms linear !important;
+}
+
+/* Garante que o texto não suma */
+#lista-sugestoes .pergunta-btn *,
+#lista-sugestoes .pergunta-btn button *,
+#lista-sugestoes button * {
+    color: inherit !important;
+    opacity: 1 !important;
+}
+
+/* Hover rápido: quando o cursor encosta no card OU no botão interno */
+#lista-sugestoes .pergunta-btn:hover,
+#lista-sugestoes .pergunta-btn:hover button,
+#lista-sugestoes .pergunta-btn button:hover,
+#lista-sugestoes button:hover {
+    background: var(--roxo-accenture) !important;
+    background-color: var(--roxo-accenture) !important;
+    background-image: none !important;
+    color: var(--branco) !important;
+    border-color: var(--roxo-accenture) !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* Clique */
+#lista-sugestoes .pergunta-btn:active,
+#lista-sugestoes .pergunta-btn:active button,
+#lista-sugestoes .pergunta-btn button:active,
+#lista-sugestoes button:active {
+    background: var(--roxo-escuro) !important;
+    background-color: var(--roxo-escuro) !important;
+    color: var(--branco) !important;
+    border-color: var(--roxo-escuro) !important;
+}
+
+/* Deixa a rolagem lateral mais leve */
+#lista-sugestoes {
+    scroll-behavior: auto !important;
+}
+
+/* ============================================================
+   6. RODAPÉ E RESPONSIVO
+   ============================================================ */
+
+.footer {
+    text-align: center;
+    color: var(--texto-suave);
+    font-size: 13px;
+    margin-top: 18px;
+}
+
+@media (max-width: 900px) {
+    .gradio-container {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        padding: 14px !important;
+    }
+
+    #linha-principal {
+        flex-direction: column !important;
+    }
+
+    #lista-sugestoes {
+        max-height: 260px;
+    }
+
+    .titulo-grupo {
+        font-size: 28px;
+        flex-wrap: wrap;
+    }
+
+    #hero {
+        padding: 26px;
+    }
+}
