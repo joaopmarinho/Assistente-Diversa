@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+requests
+beautifulsoup4
+gradio
+python-dotenv
+ipykernel
+jupyter
