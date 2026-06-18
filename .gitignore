@@ -1,3 +1,5 @@
 .gradio/certificate.pem
 .env
+.gradio/
+__pycache__/
 TCC_Soulcode.ipynb
