@@ -1,18 +1,10 @@
 /* ============================================================
-   ASSISTENTE DIVERSA — CSS DO FRONT
-   Organização:
-   1. Variáveis e base
-   2. Layout principal
-   3. Cards e bordas com cordão
-   4. Chat e campo de pergunta
-   5. Botões
-   6. Dropdown de perfil
-   7. Ajustes responsivos
+                       CSS DO FRONT
    ============================================================ */
 
 
 /* ============================================================
-   1. VARIÁVEIS E BASE
+   1. VARIÁVEIS E BASE 
    ============================================================ */
 
 :root {
@@ -368,13 +360,6 @@ button {
         border-color 80ms linear !important;
 }
 
-
-/* ------------------------------------------------------------
-   Botões principais
-   Esta versão força o hover em várias estruturas possíveis do Gradio.
-   Corrige também o texto claro/apagado em estado normal ou desabilitado.
-   ------------------------------------------------------------ */
-
 /* Estado padrão: branco com texto roxo */
 #btn-enviar,
 #btn-limpar,
@@ -565,7 +550,7 @@ button#btn-limpar:active * {
 
 
 /* ============================================================
-   6. DROPDOWN DE PERFIL — versão corrigida
+   6. DROPDOWN DE PERFIL
    ============================================================ */
 
 /* Permite que a lista do dropdown apareça por cima dos outros blocos */
@@ -803,9 +788,7 @@ button#btn-limpar:active * {
 }
 
 /* ============================================================
-   8. AJUSTE VISUAL — BORDAS ROXAS ACCENTURE
-   Mantém a borda de cordão somente no cabeçalho do título (#topo-hero).
-   Os demais boxes deixam de usar o cordão e passam a usar borda roxa.
+   8. AJUSTE VISUAL
    ============================================================ */
 
 /* Remove o cordão dos boxes internos, preservando o #topo-hero */
@@ -869,12 +852,7 @@ button#btn-limpar:active * {
 
 
 /* ============================================================
-   9. REFINAMENTO FINAL — VERSÃO PREMIUM / TCC
-   Ajustes finais para apresentação:
-   - visual mais limpo e corporativo
-   - chat com mensagens em formato de bolha
-   - melhor hierarquia visual
-   - menos peso nas bordas roxas
+   9. REFINAMENTO
    ============================================================ */
 
 /* Fundo com aparência mais premium */
@@ -1094,9 +1072,7 @@ button#btn-limpar:hover {
 
 
 /* ============================================================
-   10. CORREÇÃO DO CHATBOT — SEM BLOCOS DUPLICADOS
-   O Gradio já cria a estrutura das mensagens.
-   Aqui deixamos o chat limpo, sem forçar caixas internas demais.
+CORREÇÃO DO CHATBOT — SEM BLOCOS DUPLICADOS
    ============================================================ */
 
 /* Mantém apenas o card externo do chatbot */
@@ -1146,4 +1122,134 @@ button#btn-limpar:hover {
 #chatbot [data-testid*="assistant"] {
     background: #FFFFFF !important;
     color: #263142 !important;
+}
+
+/* ============================================================
+   CARD DE FONTES CONSULTADAS
+   ============================================================ */
+
+#fontes-painel {
+    width: 100% !important;
+}
+
+#fontes-card {
+    width: 100% !important;
+    padding: 20px 18px !important;
+
+    background: #FFFFFF !important;
+    border: 1.5px solid rgba(161, 0, 255, 0.35) !important;
+    border-radius: 22px !important;
+
+    box-shadow: none !important;
+}
+
+.fontes-titulo {
+    margin: 0 0 14px 0 !important;
+    color: #111827 !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.15px !important;
+}
+
+.fonte-vazia {
+    margin: 0 !important;
+    color: #6B7280 !important;
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+}
+
+.fonte-item {
+    padding: 12px 0 !important;
+    border-top: 1px solid rgba(17, 24, 39, 0.10) !important;
+}
+
+.fonte-item:first-of-type {
+    border-top: 0 !important;
+    padding-top: 2px !important;
+}
+
+.fonte-item a {
+    display: block !important;
+    color: #111827 !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    line-height: 1.4 !important;
+    text-decoration: none !important;
+}
+
+.fonte-item a:hover {
+    color: #6F00B8 !important;
+    text-decoration: underline !important;
+}
+
+.fonte-score {
+    display: block !important;
+    margin-top: 5px !important;
+    color: #374151 !important;
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+}
+
+/* ============================================================
+   AJUSTE FINAL — DROPDOWN SEM SOMBRAS/BLOCOS INTERNOS
+   ============================================================ */
+
+#box-perfil {
+    box-shadow: none !important;
+}
+
+#perfil-rapido {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+#perfil-rapido .block,
+#perfil-rapido .form,
+#perfil-rapido .container,
+#perfil-rapido .wrap,
+#perfil-rapido .wrap-inner,
+#perfil-rapido .secondary-wrap,
+#perfil-rapido .inner {
+    box-shadow: none !important;
+}
+
+#perfil-rapido .wrap {
+    background: #FFFFFF !important;
+    border: 1.5px solid #A100FF !important;
+    border-radius: 14px !important;
+}
+
+/* ============================================================
+   LOGO DIVERSA — PARCEIRO INSTITUCIONAL
+   ============================================================ */
+
+.parceria-diversa {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 14px;
+    padding: 8px 14px;
+
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(17, 24, 39, 0.10);
+    border-radius: 999px;
+
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.045);
+}
+
+.parceria-diversa span {
+    color: #4B5563;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.parceria-diversa img {
+    height: 26px;
+    width: auto;
+    display: block;
+    object-fit: contain;
 }
