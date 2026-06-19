@@ -1253,6 +1253,7 @@ CORREÇÃO DO CHATBOT — SEM BLOCOS DUPLICADOS
     display: block;
     object-fit: contain;
 }
+
 /* ============================================================
    FORÇAR TEMA CLARO — IGNORA MODO ESCURO DO USUÁRIO
    ============================================================ */
@@ -1432,11 +1433,11 @@ body.dark,
 
 /* Mantém a área do chatbot clara */
 .dark #chatbot,
-.dark #chatbot > div,
+.dark #chatbot>div,
 .dark #chatbot .wrap,
 .dark #chatbot .container,
 [data-theme="dark"] #chatbot,
-[data-theme="dark"] #chatbot > div,
+[data-theme="dark"] #chatbot>div,
 [data-theme="dark"] #chatbot .wrap,
 [data-theme="dark"] #chatbot .container {
     background: #FFFFFF !important;
@@ -1462,4 +1463,74 @@ body.dark,
 [data-theme="dark"] #chatbot [data-testid*="assistant"] {
     background: #FFFFFF !important;
     color: #263142 !important;
+}
+
+/* ============================================================
+   CORREÇÃO DEFINITIVA — CHATBOT SEM MODO ESCURO
+   ============================================================ */
+
+#chatbot,
+#chatbot *,
+#chatbot>div,
+#chatbot .wrap,
+#chatbot .container,
+#chatbot .block,
+#chatbot .form,
+#chatbot .bubble-wrap,
+#chatbot .message-wrap,
+#chatbot .chatbot,
+#chatbot [class*="chatbot"],
+#chatbot [class*="messages"],
+#chatbot [class*="message"],
+#chatbot [data-testid*="chatbot"],
+#chatbot [data-testid*="bot"],
+#chatbot [data-testid*="assistant"] {
+    background-color: #FFFFFF !important;
+    color: #111827 !important;
+    color-scheme: light !important;
+}
+
+/* Área de rolagem interna do chat */
+#chatbot [class*="scroll"],
+#chatbot [class*="panel"],
+#chatbot [class*="conversation"],
+#chatbot [class*="message-list"] {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+}
+
+/* Mensagem do assistente */
+#chatbot .bot,
+#chatbot .assistant,
+#chatbot [data-testid*="bot"],
+#chatbot [data-testid*="assistant"] {
+    background: #FFFFFF !important;
+    color: #263142 !important;
+}
+
+/* Mensagem do usuário */
+#chatbot .user,
+#chatbot [data-testid*="user"] {
+    background: rgba(161, 0, 255, 0.10) !important;
+    color: #35164A !important;
+}
+
+/* Texto dentro do chatbot */
+#chatbot p,
+#chatbot span,
+#chatbot div,
+#chatbot li,
+#chatbot markdown,
+#chatbot .prose {
+    color: #111827 !important;
+}
+
+/* Remove fundo escuro que algumas versões do Gradio colocam */
+.dark #chatbot,
+.dark #chatbot *,
+[data-theme="dark"] #chatbot,
+[data-theme="dark"] #chatbot * {
+    background-color: #FFFFFF !important;
+    color: #111827 !important;
+    color-scheme: light !important;
 }
