@@ -1253,3 +1253,213 @@ CORREÇÃO DO CHATBOT — SEM BLOCOS DUPLICADOS
     display: block;
     object-fit: contain;
 }
+/* ============================================================
+   FORÇAR TEMA CLARO — IGNORA MODO ESCURO DO USUÁRIO
+   ============================================================ */
+
+/* Obriga o navegador a renderizar os componentes em modo claro */
+:root {
+    color-scheme: light !important;
+}
+
+/* Força fundo claro na página inteira */
+html,
+body,
+gradio-app,
+.gradio-container,
+.app,
+.main,
+main {
+    background:
+        radial-gradient(circle at top left, rgba(161, 0, 255, 0.075), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(161, 0, 255, 0.045), transparent 30%),
+        #F7F8FC !important;
+
+    color: #111827 !important;
+    color-scheme: light !important;
+}
+
+/* Caso o Gradio ou navegador aplique classe de modo escuro */
+html.dark,
+body.dark,
+.dark,
+[data-theme="dark"] {
+    background:
+        radial-gradient(circle at top left, rgba(161, 0, 255, 0.075), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(161, 0, 255, 0.045), transparent 30%),
+        #F7F8FC !important;
+
+    color: #111827 !important;
+    color-scheme: light !important;
+}
+
+/* Garante que o container principal continue claro */
+.dark .gradio-container,
+[data-theme="dark"] .gradio-container {
+    background: transparent !important;
+    color: #111827 !important;
+}
+
+/* Força cards, chatbot e áreas principais em branco */
+.dark #topo-hero,
+.dark #hero,
+.dark #chatbot,
+.dark .card-info,
+.dark #card-sugestoes,
+.dark #pergunta-textbox,
+.dark #box-perfil,
+.dark #fontes-card,
+[data-theme="dark"] #topo-hero,
+[data-theme="dark"] #hero,
+[data-theme="dark"] #chatbot,
+[data-theme="dark"] .card-info,
+[data-theme="dark"] #card-sugestoes,
+[data-theme="dark"] #pergunta-textbox,
+[data-theme="dark"] #box-perfil,
+[data-theme="dark"] #fontes-card {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+}
+
+/* Corrige textos que podem ficar claros demais no modo escuro */
+.dark label,
+.dark p,
+.dark span,
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark li,
+.dark .prose,
+.dark .gr-markdown,
+[data-theme="dark"] label,
+[data-theme="dark"] p,
+[data-theme="dark"] span,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] li,
+[data-theme="dark"] .prose,
+[data-theme="dark"] .gr-markdown {
+    color: #111827 !important;
+}
+
+/* Mantém textos secundários com contraste bom */
+.dark .small-text,
+.dark .subtitulo-equipe,
+.dark .fonte-vazia,
+.dark .fonte-score,
+[data-theme="dark"] .small-text,
+[data-theme="dark"] .subtitulo-equipe,
+[data-theme="dark"] .fonte-vazia,
+[data-theme="dark"] .fonte-score {
+    color: #374151 !important;
+}
+
+/* Força inputs, textarea e dropdown em branco */
+.dark input,
+.dark textarea,
+.dark select,
+.dark #perfil-rapido input,
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select,
+[data-theme="dark"] #perfil-rapido input {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+    -webkit-text-fill-color: #111827 !important;
+    border-color: rgba(161, 0, 255, 0.45) !important;
+}
+
+/* Placeholder visível */
+.dark input::placeholder,
+.dark textarea::placeholder,
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: #6B7280 !important;
+    opacity: 1 !important;
+}
+
+/* Garante que o dropdown continue claro */
+.dark #perfil-rapido .wrap,
+.dark #perfil-rapido .secondary-wrap,
+.dark #perfil-rapido .inner,
+.dark #perfil-rapido .container,
+[data-theme="dark"] #perfil-rapido .wrap,
+[data-theme="dark"] #perfil-rapido .secondary-wrap,
+[data-theme="dark"] #perfil-rapido .inner,
+[data-theme="dark"] #perfil-rapido .container {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+}
+
+/* Lista de opções do dropdown em tema claro */
+.dark #perfil-rapido ul,
+.dark #perfil-rapido .options,
+.dark #perfil-rapido [role="listbox"],
+.dark #perfil-rapido .dropdown-menu,
+[data-theme="dark"] #perfil-rapido ul,
+[data-theme="dark"] #perfil-rapido .options,
+[data-theme="dark"] #perfil-rapido [role="listbox"],
+[data-theme="dark"] #perfil-rapido .dropdown-menu {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+    border: 1px solid rgba(161, 0, 255, 0.35) !important;
+}
+
+/* Opções do dropdown */
+.dark #perfil-rapido li,
+.dark #perfil-rapido .item,
+.dark #perfil-rapido [role="option"],
+[data-theme="dark"] #perfil-rapido li,
+[data-theme="dark"] #perfil-rapido .item,
+[data-theme="dark"] #perfil-rapido [role="option"] {
+    background: #FFFFFF !important;
+    color: #6F00B8 !important;
+}
+
+/* Hover do dropdown */
+.dark #perfil-rapido li:hover,
+.dark #perfil-rapido .item:hover,
+.dark #perfil-rapido [role="option"]:hover,
+[data-theme="dark"] #perfil-rapido li:hover,
+[data-theme="dark"] #perfil-rapido .item:hover,
+[data-theme="dark"] #perfil-rapido [role="option"]:hover {
+    background: #A100FF !important;
+    color: #FFFFFF !important;
+}
+
+/* Mantém a área do chatbot clara */
+.dark #chatbot,
+.dark #chatbot > div,
+.dark #chatbot .wrap,
+.dark #chatbot .container,
+[data-theme="dark"] #chatbot,
+[data-theme="dark"] #chatbot > div,
+[data-theme="dark"] #chatbot .wrap,
+[data-theme="dark"] #chatbot .container {
+    background: #FFFFFF !important;
+    color: #111827 !important;
+}
+
+/* Mensagens do usuário e assistente continuam visíveis */
+.dark #chatbot .user,
+.dark #chatbot [data-testid*="user"],
+[data-theme="dark"] #chatbot .user,
+[data-theme="dark"] #chatbot [data-testid*="user"] {
+    background: rgba(161, 0, 255, 0.10) !important;
+    color: #35164A !important;
+}
+
+.dark #chatbot .bot,
+.dark #chatbot .assistant,
+.dark #chatbot [data-testid*="bot"],
+.dark #chatbot [data-testid*="assistant"],
+[data-theme="dark"] #chatbot .bot,
+[data-theme="dark"] #chatbot .assistant,
+[data-theme="dark"] #chatbot [data-testid*="bot"],
+[data-theme="dark"] #chatbot [data-testid*="assistant"] {
+    background: #FFFFFF !important;
+    color: #263142 !important;
+}
