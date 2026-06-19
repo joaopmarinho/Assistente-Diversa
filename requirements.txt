@@ -1,8 +1,8 @@
-pandas
-scikit-learn
-requests
-beautifulsoup4
-gradio
-python-dotenv
-ipykernel
-jupyter
+gradio==4.44.1
+pandas==2.2.2
+scikit-learn==1.5.1
+requests==2.32.3
+beautifulsoup4==4.12.3
+python-dotenv==1.0.1
+ipykernel==6.29.5
+jupyter==1.0.0
