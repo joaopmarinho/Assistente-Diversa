@@ -1253,7 +1253,6 @@ CORREÇÃO DO CHATBOT — SEM BLOCOS DUPLICADOS
     display: block;
     object-fit: contain;
 }
-
 /* ============================================================
    FORÇAR TEMA CLARO — IGNORA MODO ESCURO DO USUÁRIO
    ============================================================ */
@@ -1433,11 +1432,11 @@ body.dark,
 
 /* Mantém a área do chatbot clara */
 .dark #chatbot,
-.dark #chatbot>div,
+.dark #chatbot > div,
 .dark #chatbot .wrap,
 .dark #chatbot .container,
 [data-theme="dark"] #chatbot,
-[data-theme="dark"] #chatbot>div,
+[data-theme="dark"] #chatbot > div,
 [data-theme="dark"] #chatbot .wrap,
 [data-theme="dark"] #chatbot .container {
     background: #FFFFFF !important;
