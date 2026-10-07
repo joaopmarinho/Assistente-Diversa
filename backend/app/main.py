@@ -7,8 +7,11 @@ from app.api.routes import articles, chat
 
 app = FastAPI(
     title="Assistente Diversa API",
-    description="API demonstrativa com catálogo estático e respostas mockadas.",
+    description="API demonstrativa com artigos persistidos no PostgreSQL e respostas mockadas.",
     version="0.1.0",
+    docs_url=os.getenv("OPENAPI_DOCS_URL") or None,
+    openapi_url=os.getenv("OPENAPI_SCHEMA_URL") or None,
+    redoc_url=None,
 )
 
 app.add_middleware(

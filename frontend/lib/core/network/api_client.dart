@@ -13,8 +13,11 @@ class ApiClient {
     String path, {
     required Map<String, Object?> body,
   }) async {
+    final uri = ApiConfig.baseUrl.isEmpty
+        ? Uri.base.resolve(path)
+        : Uri.parse('${ApiConfig.baseUrl}$path');
     final response = await _client.post(
-      Uri.parse('${ApiConfig.baseUrl}$path'),
+      uri,
       headers: const {'Content-Type': 'application/json'},
       body: jsonEncode(body),
     );

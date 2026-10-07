@@ -6,37 +6,35 @@ O **Assistente Diversa** é um chatbot especializado em **Educação Inclusiva**
 
 ---
 
-## Protótipo web em camadas (FastAPI + Flutter)
+## Arquitetura web em camadas (Flutter + FastAPI + PostgreSQL)
 
-O diretório `backend/` contém a API FastAPI com catálogo JSON estático e respostas determinísticas mockadas. O diretório `frontend/` contém o app Flutter organizado por feature nas camadas `data`, `domain` e `presentation`. O frontend só envia mensagens e exibe a resposta e as fontes; configuração, validação dos dados e seleção de fontes ficam no backend. Esta etapa serve para validar a integração e não substitui o notebook nem usa LLM ou banco vetorial.
+O projeto separa as responsabilidades em `frontend/`, `backend/` e `database/`. O Flutter é organizado por feature nas camadas `data`, `domain` e `presentation`; o backend contém entidades, casos de uso, repositórios, rotas e schemas Pydantic; e o banco mantém o catálogo de artigos e uma coluna vetorial preparada para busca futura. As respostas continuam mockadas nesta etapa.
 
-### Executar o backend
+### Executar a integração local com Docker
 
-```bash
-cd backend
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-dev.txt
-uvicorn app.main:app --reload
-```
-
-A API e a documentação interativa ficam em `http://localhost:8000` e `http://localhost:8000/docs`. O catálogo está em `backend/app/data/articles.json`; os principais endpoints são `GET /health`, `GET /api/v1/articles` e `POST /api/v1/chat`.
-
-### Executar o Flutter web
-
-Com Flutter instalado, em outro terminal:
+Requer Docker Engine e Docker Compose. Na raiz do repositório:
 
 ```bash
-cd frontend
-flutter pub get
-flutter run -d chrome --dart-define=API_BASE_URL=http://localhost:8000
+cp .env.example .env
+# Troque POSTGRES_PASSWORD e POSTGRES_APP_PASSWORD por senhas locais fortes.
+docker compose up --build
 ```
 
-Para testar em um emulador Android, defina `API_BASE_URL=http://10.0.2.2:8000`; em dispositivo físico, use o endereço IP acessível da máquina que executa a API.
+Abra `http://localhost:8080`. A API fica disponível pelo proxy do frontend em `/api/v1` e a documentação OpenAPI em `http://localhost:8080/docs`. O catálogo inicial vem de `backend/app/data/articles.json`; `database/init/` cria o schema, habilita `pgvector` e insere os dados mockados no volume PostgreSQL. O backend acessa o banco com um usuário local somente de leitura. Para encerrar, use `docker compose down`; **`docker compose down -v` apaga o banco local**.
 
-### Validar a integração
+Para rodar o backend fora dos containers, instale `backend/requirements-dev.txt` e execute `uvicorn app.main:app --reload` dentro de `backend/`. Sem `DATABASE_HOST`, a API usa o repositório JSON para desenvolvimento e testes. Os endpoints são `GET /health`, `GET /api/v1/articles` e `POST /api/v1/chat`.
 
-Com o backend ativo, envie uma pergunta pelo app (por exemplo, “Como apoiar um estudante autista?”). A resposta e a fonte retornadas devem corresponder ao perfil selecionado. A suíte de API pode ser executada com `cd backend && pytest`.
+### Imagens e implantação
+
+Cada camada tem seu `Dockerfile`: `frontend/Dockerfile` compila o Flutter web e serve os arquivos por Nginx não-root; `backend/Dockerfile` instala e inicia a API como usuário não-root; `database/Dockerfile` prepara PostgreSQL 16 com `pgvector` para desenvolvimento local. O `compose.yaml` é a integração local, com rede privada entre containers, volume persistente, health checks e portas locais.
+
+Para publicar, construa e envie as imagens do frontend/backend a um registry e execute-as em uma plataforma de containers (por exemplo, ECS). Configure o frontend para alcançar o serviço backend pelo DNS privado da plataforma; coloque TLS e entrada pública num Application Load Balancer/WAF, não exponha diretamente PostgreSQL. Ajuste CORS para a origem real e injete os segredos pelo Secrets Manager/gerenciador de segredos da plataforma, nunca na imagem ou no repositório.
+
+### Banco gerenciado na AWS
+
+`infrastructure/aws/database/` contém Terraform para provisionar Amazon RDS for PostgreSQL em sub-redes privadas existentes: criptografia em repouso, Multi-AZ, backups automáticos por sete dias, proteção contra exclusão, senha administrativa gerenciada pelo Secrets Manager, logs com retenção definida e regra de entrada limitada ao security group do backend. O banco não é público. Os valores de região, versão PostgreSQL compatível com `pgvector`, classe de instância, VPC, sub-redes e security group são entradas obrigatórias para dimensionar a implantação ao ambiente. Antes do `terraform init`, crie um bucket S3 remoto com versionamento, criptografia e bloqueio de acesso público; configure o backend com esse bucket, chave exclusiva e região (`use_lockfile=true`). Não compartilhe `tfstate` nem aplique alterações sem revisar `terraform plan`. A proteção `prevent_destroy` exige uma alteração deliberada e revisada para remover o banco.
+
+O output `master_secret_arn` aponta para a credencial administrativa; **não use essa conta na API**. Execute as migrações versionadas de `database/init/` por um job controlado de implantação, crie/rotacione um usuário separado com apenas leitura na tabela `articles` e entregue suas credenciais à API via Secrets Manager. Para AWS, configure `DATABASE_HOST`, `DATABASE_NAME`, `DATABASE_USER`, `DATABASE_PASSWORD`, `DATABASE_SSLMODE=verify-full` e monte o bundle de certificados CA do RDS no container indicando `DATABASE_SSLROOTCERT`. RDS tem custo contínuo (especialmente Multi-AZ); escolha região e classe após estimar carga, orçamento, RPO/RTO e requisitos de disponibilidade. O protótipo não cria conta/VPC, deploy de ECS, domínio/TLS ou pipeline de migração automaticamente.
 
 ---
 

@@ -13,6 +13,7 @@ resource "aws_security_group" "database" {
   name_prefix = "${var.name}-db-"
   description = "Private PostgreSQL access for the Assistente Diversa backend."
   vpc_id      = var.vpc_id
+  egress      = []
 
   tags = {
     Name      = "${var.name}-database"
@@ -28,6 +29,18 @@ resource "aws_vpc_security_group_ingress_rule" "backend_postgres" {
   to_port                      = 5432
   ip_protocol                  = "tcp"
   description                  = "PostgreSQL from backend tasks only."
+}
+
+resource "aws_cloudwatch_log_group" "database" {
+  for_each          = toset(["postgresql", "upgrade"])
+  name              = "/aws/rds/instance/${var.name}/${each.value}"
+  retention_in_days = 30
+  kms_key_id        = var.kms_key_arn
+
+  tags = {
+    Project   = "Assistente-Diversa"
+    ManagedBy = "Terraform"
+  }
 }
 
 resource "aws_db_instance" "database" {
@@ -56,8 +69,8 @@ resource "aws_db_instance" "database" {
   skip_final_snapshot                 = false
   final_snapshot_identifier           = "${var.name}-final"
   apply_immediately                   = false
-  enabled_cloudwatch_logs_exports     = ["postgresql", "upgrade"]
-  performance_insights_enabled        = true
+  enabled_cloudwatch_logs_exports        = ["postgresql", "upgrade"]
+  performance_insights_enabled           = true
   performance_insights_retention_period = 7
 
   tags = {
@@ -69,4 +82,6 @@ resource "aws_db_instance" "database" {
   lifecycle {
     prevent_destroy = true
   }
+
+  depends_on = [aws_cloudwatch_log_group.database]
 }

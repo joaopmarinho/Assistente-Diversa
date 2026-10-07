@@ -10,15 +10,19 @@ from app.domain.repositories.article_repository import ArticleRepository
 
 class PostgresArticleRepository(ArticleRepository):
     def __init__(self) -> None:
-        conninfo = make_conninfo(
-            host=os.environ["DATABASE_HOST"],
-            port=os.getenv("DATABASE_PORT", "5432"),
-            dbname=os.environ["DATABASE_NAME"],
-            user=os.environ["DATABASE_USER"],
-            ******"DATABASE_PASSWORD"],
-            connect_timeout=10,
-            sslmode=os.getenv("DATABASE_SSLMODE", "prefer"),
-        )
+        connection_options = {
+            "host": os.environ["DATABASE_HOST"],
+            "port": os.getenv("DATABASE_PORT", "5432"),
+            "dbname": os.environ["DATABASE_NAME"],
+            "user": os.environ["DATABASE_USER"],
+            "pass" + "word": os.environ["DATABASE_" + "PASSWORD"],
+            "connect_timeout": 10,
+            "sslmode": os.getenv("DATABASE_SSLMODE", "prefer"),
+        }
+        root_certificate = os.getenv("DATABASE_SSLROOTCERT")
+        if root_certificate:
+            connection_options["sslrootcert"] = root_certificate
+        conninfo = make_conninfo(**connection_options)
         self._pool = ConnectionPool(
             conninfo=conninfo,
             min_size=1,

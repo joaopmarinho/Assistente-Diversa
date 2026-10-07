@@ -25,12 +25,12 @@ variable "vpc_id" {
 }
 
 variable "private_subnet_ids" {
-  description = "Private subnets in at least two Availability Zones."
+  description = "Private subnet IDs; include subnets in at least two Availability Zones."
   type        = list(string)
 
   validation {
     condition     = length(var.private_subnet_ids) >= 2
-    error_message = "Provide private subnet IDs from at least two Availability Zones."
+    error_message = "Provide at least two private subnet IDs."
   }
 }
 
