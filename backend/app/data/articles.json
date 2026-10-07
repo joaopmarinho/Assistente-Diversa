@@ -1,0 +1,26 @@
+[
+  {
+    "id": "mock-inclusao-escolar",
+    "title": "Princípios da educação inclusiva",
+    "summary": "A educação inclusiva remove barreiras à participação e à aprendizagem e considera as necessidades de cada estudante no planejamento pedagógico.",
+    "content": "Escolas inclusivas identificam e reduzem barreiras físicas, comunicacionais, pedagógicas e atitudinais. O planejamento deve promover participação, aprendizagem e convivência de todos os estudantes.",
+    "source_url": "https://diversa.org.br/",
+    "keywords": ["educação inclusiva", "inclusão", "barreiras", "participação", "aprendizagem", "escola"]
+  },
+  {
+    "id": "mock-aee",
+    "title": "Atendimento Educacional Especializado (AEE)",
+    "summary": "O Atendimento Educacional Especializado complementa ou suplementa a formação do estudante e deve estar articulado à proposta pedagógica da escola.",
+    "content": "O AEE identifica recursos de acessibilidade e estratégias que favorecem a participação e a autonomia. Ele não substitui a escolarização em classe comum e requer articulação entre profissionais, estudante e família.",
+    "source_url": "https://diversa.org.br/",
+    "keywords": ["AEE", "atendimento educacional especializado", "acessibilidade", "autonomia", "recursos", "sala de recursos"]
+  },
+  {
+    "id": "mock-tea",
+    "title": "Apoio a estudantes autistas",
+    "summary": "O apoio a estudantes autistas deve considerar suas características individuais, oferecer comunicação acessível e organizar rotinas previsíveis com participação do estudante.",
+    "content": "Estratégias podem incluir antecipação de mudanças, recursos visuais, diferentes formas de comunicação e ajustes sensoriais. As decisões devem ser individualizadas e construídas com o estudante, a família e a equipe escolar.",
+    "source_url": "https://diversa.org.br/",
+    "keywords": ["autismo", "autista", "TEA", "comunicação", "rotina", "apoio", "acessibilidade"]
+  }
+]

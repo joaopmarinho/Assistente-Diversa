@@ -1,0 +1,9 @@
+{
+  "name": "Assistente Diversa",
+  "short_name": "Diversa",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#176B62",
+  "description": "Protótipo web do Assistente Diversa."
+}

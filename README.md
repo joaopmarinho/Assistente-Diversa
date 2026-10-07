@@ -6,6 +6,40 @@ O **Assistente Diversa** é um chatbot especializado em **Educação Inclusiva**
 
 ---
 
+## Protótipo web em camadas (FastAPI + Flutter)
+
+O diretório `backend/` contém a API FastAPI com catálogo JSON estático e respostas determinísticas mockadas. O diretório `frontend/` contém o app Flutter organizado por feature nas camadas `data`, `domain` e `presentation`. O frontend só envia mensagens e exibe a resposta e as fontes; configuração, validação dos dados e seleção de fontes ficam no backend. Esta etapa serve para validar a integração e não substitui o notebook nem usa LLM ou banco vetorial.
+
+### Executar o backend
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-dev.txt
+uvicorn app.main:app --reload
+```
+
+A API e a documentação interativa ficam em `http://localhost:8000` e `http://localhost:8000/docs`. O catálogo está em `backend/app/data/articles.json`; os principais endpoints são `GET /health`, `GET /api/v1/articles` e `POST /api/v1/chat`.
+
+### Executar o Flutter web
+
+Com Flutter instalado, em outro terminal:
+
+```bash
+cd frontend
+flutter pub get
+flutter run -d chrome --dart-define=API_BASE_URL=http://localhost:8000
+```
+
+Para testar em um emulador Android, defina `API_BASE_URL=http://10.0.2.2:8000`; em dispositivo físico, use o endereço IP acessível da máquina que executa a API.
+
+### Validar a integração
+
+Com o backend ativo, envie uma pergunta pelo app (por exemplo, “Como apoiar um estudante autista?”). A resposta e a fonte retornadas devem corresponder ao perfil selecionado. A suíte de API pode ser executada com `cd backend && pytest`.
+
+---
+
 ## 🚀 Como Executar o Projeto (Guia Rápido)
 
 Siga o passo a passo para rodar o protótipo localmente:
