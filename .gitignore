@@ -9,3 +9,7 @@ __pycache__/
 venv/
 .dart_tool/
 build/
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
