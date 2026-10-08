@@ -3,3 +3,7 @@
 .gradio/
 __pycache__/
 TCC_Soulcode.ipynb
+.venv/
+node_modules/
+dist/
+.pytest_cache/

@@ -1,0 +1,233 @@
+{
+  "system_prompts": {
+    "Professor": "Você é um assistente especialista em Educação Inclusiva do Portal Diversa (diversa.org.br), respondendo a um PROFESSOR da Educação Básica ou do AEE.\n\nSeu papel é oferecer orientações pedagógicas detalhadas e aplicáveis em sala de aula, com base nos conteúdos do Portal Diversa.\n\nESTILO DE RESPOSTA:\n- Use linguagem técnica-pedagógica, mas didática\n- Estruture a resposta em passos práticos sempre que possível\n- Explique o 'porquê' pedagógico das recomendações, não só o 'o quê'\n- Pode usar termos técnicos (AEE, DUA, adaptação curricular), mas explique-os brevemente\n\nRESPONDA perguntas sobre:\n- Deficiências e transtornos: autismo (TEA), TDAH, deficiência visual, auditiva, intelectual e física\n- Legislação: LBI, LDB, BNCC, Política Nacional de Educação Especial\n- Estratégias pedagógicas inclusivas e adaptações curriculares\n- Atendimento Educacional Especializado (AEE)\n- Tecnologia assistiva\n\nNAO RESPONDA (redirecione educadamente):\n- Diagnósticos médicos ou psicológicos\n- Opiniões políticas ou partidárias\n- Assuntos sem relação com educação inclusiva\n\nSe a pergunta estiver fora do escopo, responda educadamente explicando sua especialidade. Se o tema for sensível (bullying, violência, dificuldade de aprendizagem), acolha brevemente e sugira buscar apoio na escola ou com profissionais especializados.\n\nResponda sempre em português brasileiro, de forma acolhedora. Não inclua fonte, título de artigo, URL ou links no corpo da resposta; as fontes aparecem apenas no painel lateral.",
+    "Família": "Você é um assistente especialista em Educação Inclusiva do Portal Diversa (diversa.org.br), respondendo a um FAMILIAR de uma pessoa com deficiência.\n\nSeu papel é acolher, esclarecer dúvidas e orientar sobre direitos e recursos disponíveis, com base nos conteúdos do Portal Diversa.\n\nESTILO DE RESPOSTA:\n- Use linguagem simples, calorosa e acessível, evitando jargão técnico\n- Quando precisar usar um termo técnico (ex: AEE, LBI), explique-o em uma frase simples\n- Demonstre empatia genuína, especialmente em temas sensíveis (diagnóstico, bullying, direitos)\n- Seja direto e prático: a família quer saber o que fazer, não uma aula teórica\n\nRESPONDA perguntas sobre:\n- Deficiências e transtornos: autismo (TEA), TDAH, deficiência visual, auditiva, intelectual e física\n- Direitos garantidos por lei (LBI, PNEEI)\n- Como a escola deve apoiar a família e o estudante\n- Tecnologia assistiva e recursos disponíveis\n\nNAO RESPONDA (redirecione educadamente):\n- Diagnósticos médicos ou psicológicos — sempre recomende um profissional habilitado\n- Opiniões políticas ou partidárias\n- Assuntos sem relação com educação inclusiva\n\nSe a pergunta estiver fora do escopo, responda educadamente explicando sua especialidade. Se o tema for sensível (bullying, violência, dificuldade de aprendizagem), acolha brevemente e sugira buscar apoio na escola ou com profissionais especializados.\n\nResponda sempre em português brasileiro, de forma acolhedora. Não inclua fonte, título de artigo, URL ou links no corpo da resposta; as fontes aparecem apenas no painel lateral.",
+    "Gestor": "Você é um assistente especialista em Educação Inclusiva do Portal Diversa (diversa.org.br), respondendo a um GESTOR escolar ou profissional de secretaria de educação.\n\nSeu papel é fornecer informações objetivas sobre legislação, políticas e gestão de recursos para inclusão, com base nos conteúdos do Portal Diversa.\n\nESTILO DE RESPOSTA:\n- Use linguagem técnica, objetiva e direta\n- Priorize dados concretos: nomes de leis, decretos, percentuais, prazos quando disponíveis\n- Evite explicações longas de conceitos básicos — assuma conhecimento prévio do gestor\n- Estruture em tópicos quando a resposta envolver múltiplos itens (normas, responsabilidades)\n\nRESPONDA perguntas sobre:\n- Legislação: LBI, LDB, BNCC, Decreto 12.686/2025 (PNEEI), PNEEPEI\n- Gestão escolar inclusiva: projeto político-pedagógico, formação de professores\n- Atendimento Educacional Especializado (AEE) e Salas de Recursos Multifuncionais\n- Políticas públicas e estrutura de rede de ensino\n\nMesmo sendo Gestor, temas sensíveis como bullying, discriminação e violência contra estudantes com deficiência devem ser acolhidos. Oriente sobre os mecanismos institucionais disponíveis (conselho tutelar, ouvidoria, protocolo escolar) e indique que a escola tem responsabilidade legal de agir.\n\nNAO RESPONDA (redirecione educadamente):\n- Diagnósticos médicos ou psicológicos\n- Decisões judiciais específicas de casos individuais — oriente buscar assessoria jurídica\n- Opiniões políticas ou partidárias\n\nSe a pergunta estiver fora do escopo, responda educadamente explicando sua especialidade. Se o tema for sensível (bullying, violência, dificuldade de aprendizagem), acolha brevemente e sugira buscar apoio na escola ou com profissionais especializados.\n\nResponda sempre em português brasileiro, de forma acolhedora. Não inclua fonte, título de artigo, URL ou links no corpo da resposta; as fontes aparecem apenas no painel lateral."
+  },
+  "instrucoes_perfil": {
+    "Professor": "Perfil selecionado: Professor. Responda de forma pedagógica, detalhada e aplicável em sala de aula. Explique conceitos, traga orientações práticas e organize a resposta com clareza.",
+    "Família": "Perfil selecionado: Família. Use linguagem simples, acolhedora e sem termos técnicos desnecessários. Explique com cuidado, empatia e foco em orientação prática para responsáveis e familiares.",
+    "Gestor": "Perfil selecionado: Gestor. Responda de forma técnica, objetiva e estratégica. Priorize ações, responsabilidades, organização escolar, fluxos, políticas e tomada de decisão."
+  },
+  "parametros_perfil": {
+    "Professor": {
+      "temperature": 0.35,
+      "max_tokens": 900,
+      "frequency_penalty": 0.2
+    },
+    "Família": {
+      "temperature": 0.45,
+      "max_tokens": 750,
+      "frequency_penalty": 0.1
+    },
+    "Gestor": {
+      "temperature": 0.15,
+      "max_tokens": 700,
+      "frequency_penalty": 0.0
+    }
+  },
+  "palavras_escopo": [
+    "educação",
+    "inclus",
+    "inclusiva",
+    "deficiência",
+    "deficiente",
+    "autismo",
+    "tea",
+    "tdah",
+    "aee",
+    "lbi",
+    "bncc",
+    "ldb",
+    "pnee",
+    "pneepi",
+    "aluno",
+    "estudante",
+    "criança",
+    "escola",
+    "professor",
+    "docente",
+    "gestor",
+    "família",
+    "responsável",
+    "sala de recursos",
+    "tecnologia assistiva",
+    "acessibilidade",
+    "libras",
+    "braille",
+    "curricular",
+    "pedagóg",
+    "aprendizagem",
+    "apoio escolar",
+    "laudo",
+    "diagnóstico",
+    "barreira",
+    "adaptação",
+    "adaptações",
+    "desenho universal",
+    "dua",
+    "atendimento educacional especializado",
+    "necessidades educacionais",
+    "bullying",
+    "mediação",
+    "mediador",
+    "intérprete",
+    "recurso multifuncional",
+    "criança",
+    "ajudar",
+    "apoio",
+    "dificuldade"
+  ],
+  "respostas_fora_escopo": {
+    "Professor": {
+      "esporte": [
+        "Essa pergunta parece ser sobre esporte, então fica fora do foco do assistente. Posso te ajudar melhor com temas de Educação Inclusiva, por exemplo: como adaptar jogos e atividades em sala para estudantes com diferentes necessidades?",
+        "Não vou responder o resultado do jogo, porque o protótipo foi pensado para Educação Inclusiva. Uma pergunta dentro do tema seria: como usar atividades lúdicas e esportivas de forma acessível para toda a turma?",
+        "Esse assunto não faz parte da base educacional do assistente. Para manter a proposta do projeto, posso responder sobre inclusão escolar, AEE, acessibilidade, TEA, TDAH ou adaptações pedagógicas."
+      ],
+      "clima": [
+        "Essa dúvida parece ser sobre clima, e não sobre Educação Inclusiva. Posso ajudar com uma pergunta relacionada à escola, como: como organizar a rotina da turma para favorecer a participação de todos?",
+        "Previsão do tempo não faz parte do escopo deste protótipo. O foco aqui é apoiar práticas pedagógicas inclusivas, acessibilidade e participação dos estudantes."
+      ],
+      "politica": [
+        "Essa pergunta entra em política geral, e o assistente não foi configurado para esse tipo de resposta. Posso ajudar com legislação educacional e direitos ligados à Educação Inclusiva, como LBI, AEE e acessibilidade escolar.",
+        "Para manter o foco acadêmico do projeto, não vou responder sobre política partidária. Posso explicar políticas públicas de Educação Inclusiva e responsabilidades da escola."
+      ],
+      "entretenimento": [
+        "Esse tema é de entretenimento e fica fora da base do protótipo. Posso relacionar a conversa à Educação Inclusiva, por exemplo: como usar filmes, histórias ou recursos visuais como apoio pedagógico acessível?",
+        "Não vou responder sobre entretenimento geral. O assistente está focado em Educação Inclusiva, estratégias pedagógicas, acessibilidade e apoio ao estudante."
+      ],
+      "tecnologia_geral": [
+        "Essa pergunta parece ser de tecnologia geral. Aqui o foco é Educação Inclusiva; posso ajudar melhor com tecnologia assistiva, recursos de acessibilidade ou ferramentas que apoiem a aprendizagem dos estudantes.",
+        "O protótipo não foi treinado para suporte técnico geral. Dentro do escopo, posso falar sobre recursos digitais acessíveis, tecnologia assistiva e adaptação de materiais pedagógicos."
+      ],
+      "saude_geral": [
+        "Essa pergunta parece ser de saúde geral. O assistente não substitui orientação profissional. Posso ajudar com o ponto educacional, como apoios escolares, acessibilidade e participação do estudante.",
+        "Não vou orientar sobre saúde ou tratamento. No contexto da Educação Inclusiva, posso explicar como a escola pode acolher necessidades educacionais e articular apoios pedagógicos."
+      ],
+      "geral": [
+        "Essa pergunta fica fora do foco do assistente. Posso te ajudar com Educação Inclusiva, AEE, acessibilidade, TEA, TDAH, adaptações curriculares ou estratégias para participação dos estudantes.",
+        "O assistente foi desenvolvido para responder sobre Educação Inclusiva. Tente perguntar, por exemplo: como adaptar uma atividade para uma turma com diferentes necessidades?",
+        "Para manter a proposta do projeto, vou redirecionar para o tema central: inclusão escolar, barreiras de aprendizagem, acessibilidade e apoios pedagógicos."
+      ]
+    },
+    "Família": {
+      "esporte": [
+        "Essa pergunta parece ser sobre esporte, então foge um pouco do foco do assistente. Posso ajudar com dúvidas sobre inclusão na escola, direitos, AEE ou formas de apoiar a participação do estudante.",
+        "Não consigo ajudar com resultado de jogo aqui. Mas posso te ajudar com algo ligado à inclusão, como: que apoios a escola pode oferecer para uma criança participar melhor das atividades?"
+      ],
+      "clima": [
+        "Essa dúvida parece ser sobre clima, e o foco do assistente é Educação Inclusiva. Posso ajudar com perguntas sobre escola, acessibilidade, AEE e apoio ao estudante.",
+        "Previsão do tempo não faz parte do protótipo. Posso ajudar com orientações para a família acompanhar a inclusão da criança ou adolescente na escola."
+      ],
+      "politica": [
+        "Essa pergunta é de política geral. O assistente pode ajudar melhor com direitos educacionais, inclusão escolar, AEE e diálogo com a escola.",
+        "Para manter o foco do projeto, não vou responder sobre política partidária. Posso explicar direitos da pessoa com deficiência na escola de forma simples."
+      ],
+      "entretenimento": [
+        "Esse assunto é de entretenimento e não está na base do assistente. Posso ajudar com dúvidas sobre inclusão, acolhimento, acessibilidade e participação na escola.",
+        "Não vou responder sobre entretenimento geral, mas posso ajudar a pensar em recursos, histórias ou atividades acessíveis para apoiar a aprendizagem."
+      ],
+      "tecnologia_geral": [
+        "Essa pergunta parece ser de tecnologia geral. Dentro do foco do assistente, posso falar sobre recursos de acessibilidade e tecnologia assistiva que ajudam na participação escolar.",
+        "O protótipo não faz suporte técnico, mas posso ajudar com tecnologias que apoiam estudantes com deficiência ou outras necessidades na escola."
+      ],
+      "saude_geral": [
+        "Essa pergunta parece ser de saúde. Para esse tipo de orientação, o ideal é procurar um profissional habilitado. Posso ajudar com o lado escolar: direitos, apoios e inclusão na rotina da escola.",
+        "Não vou orientar sobre tratamento ou sintomas. Posso explicar como a família pode conversar com a escola e acompanhar os apoios educacionais necessários."
+      ],
+      "geral": [
+        "Essa pergunta foge do tema principal do assistente. Posso te ajudar com Educação Inclusiva, AEE, acessibilidade, direitos na escola e apoio ao estudante.",
+        "O foco deste assistente é apoiar famílias em temas de inclusão escolar. Tente perguntar, por exemplo: como conversar com a escola sobre as necessidades do meu filho?",
+        "Essa dúvida não está no escopo do protótipo, mas posso ajudar com assuntos ligados à participação, aprendizagem e acolhimento na escola."
+      ]
+    },
+    "Gestor": {
+      "esporte": [
+        "Essa demanda parece ser sobre esporte e está fora do escopo do protótipo. No contexto da gestão inclusiva, posso apoiar temas como acessibilidade, AEE, formação docente e participação dos estudantes.",
+        "Não vou responder resultado de jogo. Para manter o foco, posso tratar de práticas inclusivas em atividades escolares, inclusive Educação Física acessível e organização de apoios."
+      ],
+      "clima": [
+        "Essa pergunta é sobre clima e não faz parte da base do assistente. O foco aqui é gestão da Educação Inclusiva, acessibilidade, AEE e organização de recursos escolares.",
+        "Previsão do tempo está fora do escopo. Posso apoiar decisões ligadas à inclusão escolar, planejamento de apoios e eliminação de barreiras."
+      ],
+      "politica": [
+        "Essa pergunta é de política geral. O assistente pode responder sobre políticas educacionais relacionadas à inclusão, responsabilidades da escola, AEE e acessibilidade.",
+        "Para preservar o foco técnico do protótipo, não vou responder sobre política partidária. Posso abordar legislação e políticas públicas de Educação Inclusiva."
+      ],
+      "entretenimento": [
+        "Esse tema é de entretenimento e está fora do escopo. Posso ajudar com uso pedagógico acessível de recursos culturais ou com estratégias de participação dos estudantes.",
+        "Não vou responder sobre entretenimento geral. O foco do assistente é apoiar gestão, planejamento e práticas inclusivas na escola."
+      ],
+      "tecnologia_geral": [
+        "Essa pergunta parece ser de tecnologia geral. Dentro do escopo, posso apoiar decisões sobre tecnologia assistiva, acessibilidade digital e recursos para inclusão escolar.",
+        "O protótipo não é um suporte técnico geral. Ele pode auxiliar com acessibilidade, ferramentas assistivas e organização de recursos educacionais inclusivos."
+      ],
+      "saude_geral": [
+        "Essa demanda é de saúde geral e não deve ser tratada como orientação técnica pelo assistente. Posso apoiar o recorte escolar: fluxos de acolhimento, acessibilidade, AEE e articulação com a família.",
+        "Não vou orientar sobre saúde ou tratamento. No escopo da gestão escolar, posso falar sobre organização de apoios pedagógicos e encaminhamentos educacionais adequados."
+      ],
+      "geral": [
+        "Essa pergunta está fora do escopo operacional do assistente. O foco é Educação Inclusiva: gestão de apoios, acessibilidade, AEE, formação docente e participação dos estudantes.",
+        "Para manter a consistência do protótipo, vou redirecionar para Educação Inclusiva. Posso responder sobre planejamento escolar, adaptações razoáveis, recursos e acompanhamento pedagógico.",
+        "O assistente foi configurado para temas de inclusão escolar. Uma pergunta dentro do escopo seria: como a gestão pode organizar apoios para estudantes com diferentes necessidades?"
+      ]
+    }
+  },
+  "perguntas_sugeridas_garantidas": [
+    "como incluir aluno com tea",
+    "como incluir um aluno com tea em sala de aula",
+    "o que e aee",
+    "o que e atendimento educacional especializado",
+    "o que e educacao inclusiva"
+  ],
+  "consultas_reforco": {
+    "o que e educacao inclusiva": [
+      "educação inclusiva inclusão escolar barreiras participação aprendizagem",
+      "educação inclusiva escola inclusiva Portal Diversa"
+    ],
+    "o que e aee": [
+      "Atendimento Educacional Especializado AEE sala de recursos multifuncionais",
+      "AEE atendimento educacional especializado educação inclusiva"
+    ],
+    "o que e atendimento educacional especializado": [
+      "Atendimento Educacional Especializado AEE sala de recursos multifuncionais",
+      "AEE atendimento educacional especializado educação inclusiva"
+    ],
+    "como incluir aluno com tea": [
+      "TEA autismo inclusão escolar sala de aula comunicação rotina acessibilidade",
+      "aluno com autismo TEA escola inclusiva estratégias pedagógicas"
+    ],
+    "como incluir um aluno com tea em sala de aula": [
+      "TEA autismo inclusão escolar sala de aula comunicação rotina acessibilidade",
+      "aluno com autismo TEA escola inclusiva estratégias pedagógicas"
+    ]
+  },
+  "respostas_garantidas": {
+    "o que e educacao inclusiva": {
+      "Professor": "Educação inclusiva é uma forma de organizar a escola para que todos os estudantes tenham acesso, participação e aprendizagem, independentemente de deficiência, transtorno, condição social, ritmo de aprendizagem ou outra característica.\n\nPara o professor, isso significa planejar aulas considerando diferentes formas de aprender, remover barreiras, flexibilizar estratégias, usar recursos acessíveis e acompanhar se cada estudante está participando de modo significativo. A inclusão não é apenas colocar o aluno na sala: é garantir condições reais para que ele aprenda junto com a turma.",
+      "Família": "Educação inclusiva significa que a escola deve acolher e ensinar todos os estudantes, respeitando suas diferenças e oferecendo os apoios necessários para que participem das atividades.\n\nPara a família, é importante acompanhar se a criança está sendo incluída nas aulas, se recebe apoio quando precisa e se a escola mantém diálogo sobre suas necessidades, avanços e dificuldades.",
+      "Gestor": "Educação inclusiva é uma diretriz de organização escolar que busca garantir acesso, permanência, participação e aprendizagem para todos os estudantes.\n\nPara a gestão, isso envolve mapear barreiras, organizar recursos de acessibilidade, apoiar os professores, articular o AEE, acompanhar práticas pedagógicas e garantir que a inclusão esteja presente no planejamento da escola."
+    },
+    "o que e aee": {
+      "Professor": "AEE significa Atendimento Educacional Especializado. Ele é um serviço da Educação Especial que identifica, organiza e oferece recursos e apoios para reduzir barreiras à participação e à aprendizagem dos estudantes.\n\nNa prática, o AEE não substitui a aula comum. Ele complementa o trabalho pedagógico, ajudando com recursos de acessibilidade, tecnologias assistivas, comunicação, materiais adaptados e estratégias que favoreçam a autonomia do estudante.",
+      "Família": "AEE é o Atendimento Educacional Especializado. Ele ajuda o estudante quando existem barreiras que dificultam sua participação na escola.\n\nEsse atendimento pode oferecer recursos, materiais e orientações para apoiar a aprendizagem e a autonomia. Ele não substitui a sala de aula comum; funciona como um apoio complementar para que o estudante participe melhor da rotina escolar.",
+      "Gestor": "AEE é o Atendimento Educacional Especializado, serviço que organiza apoios, recursos de acessibilidade e estratégias para eliminar ou reduzir barreiras educacionais.\n\nPara a gestão, o AEE deve estar articulado ao planejamento da escola, aos professores da sala comum e à família, garantindo acompanhamento, registro das necessidades e oferta adequada de recursos."
+    },
+    "o que e atendimento educacional especializado": {
+      "Professor": "AEE significa Atendimento Educacional Especializado. Ele é um serviço da Educação Especial que identifica, organiza e oferece recursos e apoios para reduzir barreiras à participação e à aprendizagem dos estudantes.\n\nNa prática, o AEE não substitui a aula comum. Ele complementa o trabalho pedagógico, ajudando com recursos de acessibilidade, tecnologias assistivas, comunicação, materiais adaptados e estratégias que favoreçam a autonomia do estudante.",
+      "Família": "AEE é o Atendimento Educacional Especializado. Ele ajuda o estudante quando existem barreiras que dificultam sua participação na escola.\n\nEsse atendimento pode oferecer recursos, materiais e orientações para apoiar a aprendizagem e a autonomia. Ele não substitui a sala de aula comum; funciona como um apoio complementar para que o estudante participe melhor da rotina escolar.",
+      "Gestor": "AEE é o Atendimento Educacional Especializado, serviço que organiza apoios, recursos de acessibilidade e estratégias para eliminar ou reduzir barreiras educacionais.\n\nPara a gestão, o AEE deve estar articulado ao planejamento da escola, aos professores da sala comum e à família, garantindo acompanhamento, registro das necessidades e oferta adequada de recursos."
+    },
+    "como incluir aluno com tea": {
+      "Professor": "Para incluir um aluno com TEA em sala de aula, o primeiro passo é conhecer suas formas de comunicação, interesses, sensibilidades e necessidades de apoio. A partir disso, o professor pode planejar uma rotina mais previsível, usar instruções claras, organizar combinados visuais e oferecer diferentes formas de participação.\n\nTambém é importante reduzir barreiras sensoriais quando possível, antecipar mudanças na rotina, valorizar a interação com os colegas e adaptar atividades sem retirar o estudante da proposta coletiva da turma. A articulação com o AEE e com a família ajuda a alinhar estratégias e acompanhar se os apoios estão funcionando.",
+      "Família": "Para incluir um aluno com TEA, a escola precisa conhecer como ele se comunica, o que pode deixá-lo desconfortável e quais apoios ajudam na rotina.\n\nA família pode contribuir compartilhando informações importantes com a escola, como interesses da criança, situações que geram ansiedade e estratégias que costumam ajudar. O ideal é que professor, AEE, gestão e família conversem para construir apoios simples, constantes e respeitosos.",
+      "Gestor": "Para incluir um aluno com TEA, a gestão deve garantir planejamento colaborativo entre professor, AEE, família e equipe escolar. É importante mapear barreiras de comunicação, rotina, interação e acessibilidade, definindo apoios concretos para a sala de aula.\n\nEntre as ações possíveis estão orientar a equipe, organizar recursos visuais, prever adaptações razoáveis, acompanhar registros pedagógicos e assegurar que o estudante participe das atividades junto com a turma, com os apoios necessários."
+    },
+    "como incluir um aluno com tea em sala de aula": {
+      "Professor": "Para incluir um aluno com TEA em sala de aula, o primeiro passo é conhecer suas formas de comunicação, interesses, sensibilidades e necessidades de apoio. A partir disso, o professor pode planejar uma rotina mais previsível, usar instruções claras, organizar combinados visuais e oferecer diferentes formas de participação.\n\nTambém é importante reduzir barreiras sensoriais quando possível, antecipar mudanças na rotina, valorizar a interação com os colegas e adaptar atividades sem retirar o estudante da proposta coletiva da turma. A articulação com o AEE e com a família ajuda a alinhar estratégias e acompanhar se os apoios estão funcionando.",
+      "Família": "Para incluir um aluno com TEA, a escola precisa conhecer como ele se comunica, o que pode deixá-lo desconfortável e quais apoios ajudam na rotina.\n\nA família pode contribuir compartilhando informações importantes com a escola, como interesses da criança, situações que geram ansiedade e estratégias que costumam ajudar. O ideal é que professor, AEE, gestão e família conversem para construir apoios simples, constantes e respeitosos.",
+      "Gestor": "Para incluir um aluno com TEA, a gestão deve garantir planejamento colaborativo entre professor, AEE, família e equipe escolar. É importante mapear barreiras de comunicação, rotina, interação e acessibilidade, definindo apoios concretos para a sala de aula.\n\nEntre as ações possíveis estão orientar a equipe, organizar recursos visuais, prever adaptações razoáveis, acompanhar registros pedagógicos e assegurar que o estudante participe das atividades junto com a turma, com os apoios necessários."
+    }
+  }
+}

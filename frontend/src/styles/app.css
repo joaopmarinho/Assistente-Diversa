@@ -1,0 +1,301 @@
+:root {
+  --roxo: #a100ff;
+  --roxo-escuro: #6f00b8;
+  --roxo-claro: #f3e6ff;
+  --texto: #111827;
+  --texto-suave: #6b7280;
+  --borda: #e5e7eb;
+  --fundo: #fafafa;
+  --branco: #fff;
+  --sombra: 0 10px 28px rgba(17, 24, 39, 0.08);
+  --raio: 22px;
+  --raio-botao: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  color: var(--texto);
+  background: radial-gradient(circle at top left, rgba(161, 0, 255, 0.1), transparent 32%), var(--fundo);
+}
+
+.pagina {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 18px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.estado-vazio {
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero,
+.card,
+.coluna-chat {
+  background: var(--branco);
+  border: 1px solid rgba(161, 0, 255, 0.38);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 28px;
+}
+
+.hero h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.icone-grupo {
+  height: 1.6em;
+}
+
+.detalhe {
+  color: var(--roxo);
+}
+
+.equipe {
+  margin: 4px 0;
+  font-weight: 600;
+  color: var(--roxo-escuro);
+}
+
+.descricao {
+  margin: 0 0 12px;
+  color: var(--texto-suave);
+  max-width: 60ch;
+}
+
+.logo-parceiro {
+  height: 36px;
+}
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.perfil label {
+  font-weight: 600;
+  color: var(--roxo-escuro);
+}
+
+select,
+textarea {
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio-botao);
+  background: var(--branco);
+}
+
+.principal {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(260px, 1.3fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.coluna-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+}
+
+.chat {
+  height: 500px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px;
+}
+
+.bolha {
+  max-width: 85%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.bolha > :first-child {
+  margin-top: 0;
+}
+
+.bolha > :last-child {
+  margin-bottom: 0;
+}
+
+.bolha-user {
+  align-self: flex-end;
+  background: var(--roxo);
+  color: var(--branco);
+}
+
+.bolha-assistant {
+  align-self: flex-start;
+  background: var(--roxo-claro);
+}
+
+.digitando {
+  color: var(--texto-suave);
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.campo {
+  position: relative;
+}
+
+.campo textarea {
+  width: 100%;
+  padding-right: 52px;
+  resize: vertical;
+}
+
+.botao-voz {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  border: 0;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  background: var(--roxo-claro);
+  cursor: pointer;
+}
+
+.botao-voz.ativo {
+  background: var(--roxo);
+}
+
+.linha-botoes {
+  display: flex;
+  gap: 12px;
+}
+
+.botao {
+  font: inherit;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: var(--raio-botao);
+  border: 1px solid var(--roxo);
+  cursor: pointer;
+}
+
+.botao:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.botao-principal {
+  flex: 1;
+  background: var(--roxo);
+  color: var(--branco);
+}
+
+.botao-secundario {
+  background: var(--branco);
+  color: var(--roxo-escuro);
+  text-align: left;
+}
+
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--roxo-escuro);
+  outline-offset: 2px;
+}
+
+.lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card {
+  padding: 18px;
+}
+
+.card h2 {
+  margin: 0 0 12px;
+  font-size: 1.05rem;
+}
+
+.sugestoes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fontes {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fontes a {
+  color: var(--roxo-escuro);
+}
+
+.suave {
+  margin: 0;
+  color: var(--texto-suave);
+}
+
+.alerta {
+  padding: 12px 16px;
+  border-radius: var(--raio-botao);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+@media (max-width: 760px) {
+  .pagina {
+    padding: 12px;
+  }
+
+  .hero {
+    flex-direction: column;
+  }
+
+  .principal {
+    grid-template-columns: 1fr;
+  }
+
+  .chat {
+    height: 60vh;
+  }
+
+  .linha-botoes {
+    flex-direction: column;
+  }
+}

@@ -1,92 +1,93 @@
-# 🌐 Assistente Diversa — Educação Inclusiva
+# Assistente Diversa — Educação Inclusiva
 
-Protótipo funcional desenvolvido para o Trabalho de Conclusão de Curso (TCC) da **Equipe Hélice (SoulCode Academy / Accenture)**.
+Chatbot RAG sobre Educação Inclusiva, com base nos artigos do [Portal Diversa](https://diversa.org.br/). Projeto de TCC da **Equipe Hélice** (SoulCode Academy / Accenture).
 
-O **Assistente Diversa** é um chatbot especializado em **Educação Inclusiva**, alimentado por uma base de dados curada com artigos do [Portal Diversa](https://diversa.org.br/). Ele utiliza arquitetura **RAG (Retrieval-Augmented Generation)**: realiza buscas híbridas de documentos relevantes com TF-IDF e gera respostas adaptadas ao perfil do usuário final por meio de grandes modelos de linguagem (LLMs) via API da **Groq** (Llama 3.1).
+A versão web separa o protótipo original (notebook com Gradio) em uma API FastAPI e uma interface React. O notebook continua em [notebooks/](notebooks/README.md).
 
----
-
-## 🚀 Como Executar o Projeto (Guia Rápido)
-
-Siga o passo a passo para rodar o protótipo localmente:
-
-### 1. Preparar o Ambiente
-Abra o terminal na pasta raiz do projeto:
-```bash
-# Crie o ambiente virtual
-python3 -m venv venv
-
-# Ative o ambiente virtual
-# No Linux/macOS:
-source venv/bin/activate
-# No Windows (Command Prompt):
-venv\Scripts\activate
-
-# Instale as dependências
-pip install -r requirements.txt
-```
-
-### 2. Configurar as Chaves de API (`.env`)
-O assistente requer uma chave da Groq para habilitar a geração por IA (sem ela, rodará em modo demonstração estático).
-1. Obtenha sua chave gratuita no console da [Groq](https://console.groq.com/) e [HuggingFace](https://huggingface.co/)
-2. Crie ou edite o arquivo `.env` na raiz do projeto e insira:
-```env
-GROQ_KEY=sua_chave_aqui
-HUGGINGFACE_API_KEY=sua_chave_aqui
-```
-
-### 3. Rodar o Notebook
-Com o ambiente ativado, inicie o Jupyter:
-```bash
-jupyter notebook
-```
-No navegador, abra `prototipo_funcional_assistente_diversa.ipynb` e execute todas as células (`Cell -> Run All` ou `Shift + Enter` sequencialmente). O link da interface web interativa do **Gradio** será exibido na célula correspondente (`http://127.0.0.1:7860`).
-
----
-
-## 📂 Arquitetura do Notebook
-
-O arquivo `prototipo_funcional_assistente_diversa.ipynb` está estruturado de forma lógica e incremental nas seguintes etapas:
+## Arquitetura
 
 ```mermaid
-graph TD
-    A[1-4. Preparação & Limpeza] --> B[5-6. Busca de Documentos TF-IDF]
-    B --> C[7-8. Prompting & Pipeline RAG]
-    C --> D[9-10. Testes & Interface Gradio]
-    D --> E[Requisitos 1-12. Avaliações & Evoluções]
+graph LR
+    U[Usuário] --> CF[CloudFront]
+    CF -->|/| S3[(S3: frontend React)]
+    CF -->|/api/*| L[Lambda: FastAPI]
+    L --> R[RAG TF-IDF em memória]
+    L -->|HTTPS| G[Groq LLM]
 ```
-### 📋 Requisitos do Projeto (1 a 12)
 
-A evolução do protótipo é guiada por 12 requisitos organizados e avaliados no notebook:
+Fluxo de `POST /api/chat`: valida a entrada, checa o escopo (fora do tema, responde com redirecionamento), busca os artigos, monta o prompt do perfil, chama a Groq e pós-processa a resposta. Sem chave da Groq, ou se ela falhar, a API responde em modo demonstração.
 
-1. **Requisito 1: Expansão da Base de Conhecimento**
-   * Ampliação do corpus para mais de 20 artigos do Portal Diversa, englobando temas como autismo (TEA), TDAH, deficiência visual, auditiva, intelectual, tecnologia assistiva, AEE e legislação.
-2. **Requisito 2: Controle de Anti-Alucinação**
-   * Configuração de diretivas no prompt de sistema para proibir a invenção de títulos de artigos e links (URLs), reforçando que o modelo se limite aos trechos recuperados.
-3. **Requisito 3: Bateria de Testes Automatizada**
-   * Criação e documentação de um conjunto de testes estruturado avaliando respostas corretas, redirecionamentos de escopo e possíveis falhas.
-4. **Requisito 4: Avaliação de Ética e Riscos**
-   * Análise de conformidade ética, limitações do assistente em produção e mitigação de riscos em ambiente pedagógico real.
-5. **Requisito 5: Escolha e Configuração do Modelo**
-   * Justificativa da escolha do modelo (`llama-3.1-8b-instant` ou equivalentes), limites de requisições gratuitas (Rate Limits) e controle de erros.
-6. **Requisito 6: Estilização da Interface de Usuário**
-   * Implementação visual da interface com folhas de estilo personalizadas (CSS) e referências visuais da Equipe Hélice.
-7. **Requisito 7: Parametrização por Perfil de Usuário**
-   * Personalização de respostas (temperatura, limites de tokens) de acordo com o perfil selecionado (Professor, Família, Gestor).
-8. **Requisito 8: Controles Dinâmicos no Gradio**
-   * Utilização de elementos de interface como dropdowns, botões e controles de seleção de perfil.
-9. **Requisito 9: Histórico e Persistência de Conversação**
-   * Implementação de histórico persistente e controle de contexto isolado por perfil do usuário durante a sessão.
-10. **Requisito 10: Métricas de Uso e Dashboards**
-    * Registro em tempo real de logs (`timestamp`, `perfil`, `pergunta`, `titulo_artigo`, `artigos_recuperados`, `score_similaridade`) e visualização via Boxplot e tabelas analíticas.
-11. **Requisito 11: Busca Semântica Avançada (Embeddings)**
-    * Implementação de vetorização semântica usando embeddings multilíngues via API do HuggingFace para suporte a sinônimos.
-12. **Requisito 12: Benchmark de Modelos e Fallback**
-    * Testes de performance comparativos de latência e qualidade entre modelos da Groq.
+| Método | Rota | Função |
+|---|---|---|
+| GET | `/api/health` | Status e total de artigos indexados |
+| GET | `/api/profiles` | Perfis, saudações e perguntas sugeridas |
+| POST | `/api/chat` | `{pergunta, perfil, historico}` → `{resposta, perfil, fontes, origem}` |
 
----
+Não há banco de dados na V1: os artigos ficam em `backend/app/data/artigos.csv`, o histórico fica no navegador (`localStorage`) e cada interação é registrada como uma linha JSON no log.
 
-## 🛠️ Recursos Adicionais
-* **`style.css`**: Folha de estilo CSS utilizada para a customização estética premium da interface Gradio.
-* **`imagens_do_tcc/`**: Contém elementos gráficos essenciais do chat, como o cordão de quebra-cabeça (TEA) e ícones da Equipe Hélice.
-* **`artigos.csv`**: Base de conhecimento estruturada do Portal Diversa.
+## Estrutura
+
+```
+backend/    API FastAPI (app/api, core, services, repositories, schemas, data) e testes
+frontend/   React + Vite + TypeScript
+infra/      template SAM (Lambda, S3, CloudFront, Budget) e deploy.sh
+notebooks/  protótipo original em Gradio
+```
+
+## Rodar localmente
+
+Configure a chave da Groq copiando `.env.example` para `.env` na raiz (`GROQ_KEY=...`). Ela é opcional.
+
+```bash
+# API em http://localhost:8000
+cd backend
+python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
+.venv/bin/uvicorn app.main:app --reload --port 8000
+
+# Interface em http://localhost:5173 (em outro terminal)
+cd frontend
+npm install && npm run dev
+```
+
+Testes do backend: `cd backend && .venv/bin/pytest`.
+
+### Com Docker
+
+```bash
+docker compose up --build   # interface em http://localhost:5173, API em http://localhost:8000
+```
+
+O código do `backend/app` e do `frontend/` é montado nos contêineres: ao salvar um arquivo, o `uvicorn --reload` reinicia a API e o Vite atualiza o navegador. A chave da Groq vem do `.env` da raiz. Se mudar dependências (`requirements.txt` ou `package.json`), rode de novo com `--build`.
+
+Para testar a versão de produção (frontend compilado servido pelo nginx, que encaminha `/api/` para a API, como o CloudFront faz na AWS):
+
+```bash
+docker compose -f docker-compose.prod.yml up --build   # http://localhost:8080
+```
+
+## Configuração do backend
+
+Variáveis de ambiente (ou `.env`):
+
+| Variável | Padrão | Uso |
+|---|---|---|
+| `GROQ_KEY` | vazio | Chave da Groq (também aceita `GROQ_API_KEY`) |
+| `GROQ_MODEL` | `openai/gpt-oss-20b` | Modelo usado |
+| `CORS_ORIGINS` | `http://localhost:5173` | Origens permitidas, separadas por vírgula |
+| `RATE_LIMIT_POR_MINUTO` | `20` | Requisições por IP em `/api/chat` |
+| `MAX_CHARS_PERGUNTA` | `1000` | Tamanho máximo da pergunta |
+
+## Deploy na AWS
+
+Pré-requisitos: AWS CLI, SAM CLI e Docker. Crie a conta no **Free account plan**, que não cobra enquanto você não fizer upgrade.
+
+```bash
+ALERT_EMAIL=voce@exemplo.com GROQ_KEY=... ./infra/deploy.sh
+```
+
+Proteções contra custo:
+
+- A concorrência da Lambda é limitada (`ConcorrenciaMaxima`, padrão 3), o que limita o uso e o custo.
+- Um Budget avisa por e-mail quando o custo bruto passa de US$ 0,10 e aciona uma Lambda que coloca a concorrência da API em 0, o que desliga a API.
+- Para religar, rode o deploy de novo.
+- Os dados de custo da AWS têm atraso de horas, então o desligamento não é instantâneo.
