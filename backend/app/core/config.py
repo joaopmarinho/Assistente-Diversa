@@ -27,6 +27,16 @@ class Settings(BaseSettings):
     max_chars_pergunta: int = 1000
     max_mensagens_historico: int = 8
 
+    # Embeddings locais (ONNX): sem chave e sem cota; se falharem, a busca segue só lexical.
+    embeddings_habilitados: bool = True
+    embedding_modelo: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+    embedding_cache_dir: str | None = None
+    embeddings_npz: Path = BACKEND_DIR / "app" / "data" / "embeddings.npz"
+    # Similaridade de cosseno mínima para um trecho contar como relevante sem nenhuma palavra em comum.
+    limiar_semantico: float = 0.40
+    # Acima disto, uma pergunta sem palavra-chave ainda é aceita como sendo sobre educação inclusiva.
+    limiar_escopo_semantico: float = 0.50
+
 
 @lru_cache
 def get_settings() -> Settings:

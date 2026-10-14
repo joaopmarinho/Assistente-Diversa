@@ -1,92 +1,92 @@
-# 🌐 Assistente Diversa — Educação Inclusiva
+# Assistente Diversa — Inclusive Education
 
-Protótipo funcional desenvolvido para o Trabalho de Conclusão de Curso (TCC) da **Equipe Hélice (SoulCode Academy / Accenture)**.
+A working prototype developed as the graduation project of **Team Hélice (SoulCode Academy / Accenture)**.
 
-O **Assistente Diversa** é um chatbot especializado em **Educação Inclusiva**, alimentado por uma base de dados curada com artigos do [Portal Diversa](https://diversa.org.br/). Ele utiliza arquitetura **RAG (Retrieval-Augmented Generation)**: realiza buscas híbridas de documentos relevantes com TF-IDF e gera respostas adaptadas ao perfil do usuário final por meio de grandes modelos de linguagem (LLMs) via API da **Groq** (Llama 3.1).
+**Assistente Diversa** is a chatbot focused on **inclusive education**, powered by a curated collection of articles from the [Diversa Portal](https://diversa.org.br/). It uses a **RAG (Retrieval-Augmented Generation)** architecture: it retrieves relevant documents using TF-IDF and generates responses tailored to the end user's profile through large language models (LLMs) via the **Groq** API (Llama 3.1).
 
 ---
 
-## 🚀 Como Executar o Projeto (Guia Rápido)
+## Run the Project
 
-Siga o passo a passo para rodar o protótipo localmente:
+Follow these steps to run the prototype locally.
 
-### 1. Preparar o Ambiente
-Abra o terminal na pasta `notebooks/`:
+### 1. Set Up the Environment
+Open a terminal in the `notebooks/` directory:
 ```bash
-# Crie o ambiente virtual
+# Create a virtual environment
 python3 -m venv venv
 
-# Ative o ambiente virtual
-# No Linux/macOS:
+# Activate the virtual environment
+# Linux/macOS:
 source venv/bin/activate
-# No Windows (Command Prompt):
+# Windows (Command Prompt):
 venv\Scripts\activate
 
-# Instale as dependências
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Configurar as Chaves de API (`.env`)
-O assistente requer uma chave da Groq para habilitar a geração por IA (sem ela, rodará em modo demonstração estático).
-1. Obtenha sua chave gratuita no console da [Groq](https://console.groq.com/) e [HuggingFace](https://huggingface.co/)
-2. Crie ou edite o arquivo `.env` na raiz do projeto e insira:
+### 2. Configure API Keys (`.env`)
+The assistant requires a Groq key to enable AI-generated responses. Without it, the prototype runs in static demo mode.
+1. Get API keys from the [Groq console](https://console.groq.com/) and [Hugging Face](https://huggingface.co/).
+2. Create or edit the `.env` file in the project root and add:
 ```env
-GROQ_KEY=sua_chave_aqui
-HUGGINGFACE_API_KEY=sua_chave_aqui
+GROQ_KEY=your_key_here
+HUGGINGFACE_API_KEY=your_key_here
 ```
 
-### 3. Rodar o Notebook
-Com o ambiente ativado, inicie o Jupyter:
+### 3. Run the Notebook
+With the environment activated, start Jupyter:
 ```bash
 jupyter notebook
 ```
-No navegador, abra `prototipo_funcional_assistente_diversa.ipynb` e execute todas as células (`Cell -> Run All` ou `Shift + Enter` sequencialmente). O link da interface web interativa do **Gradio** será exibido na célula correspondente (`http://127.0.0.1:7860`).
+In your browser, open `prototipo_funcional_assistente_diversa.ipynb` and run all cells (`Cell -> Run All` or press `Shift + Enter` sequentially). The URL for the interactive **Gradio** web interface will appear in the relevant cell (`http://127.0.0.1:7860`).
 
 ---
 
-## 📂 Arquitetura do Notebook
+## Notebook Architecture
 
-O arquivo `prototipo_funcional_assistente_diversa.ipynb` está estruturado de forma lógica e incremental nas seguintes etapas:
+The `prototipo_funcional_assistente_diversa.ipynb` notebook is organized into the following incremental stages:
 
 ```mermaid
 graph TD
-    A[1-4. Preparação & Limpeza] --> B[5-6. Busca de Documentos TF-IDF]
-    B --> C[7-8. Prompting & Pipeline RAG]
-    C --> D[9-10. Testes & Interface Gradio]
-    D --> E[Requisitos 1-12. Avaliações & Evoluções]
+    A[1-4. Setup and preprocessing] --> B[5-6. TF-IDF document retrieval]
+    B --> C[7-8. Prompting and RAG pipeline]
+    C --> D[9-10. Tests and Gradio interface]
+    D --> E[Requirements 1-12. Evaluations and improvements]
 ```
-### 📋 Requisitos do Projeto (1 a 12)
+### Project Requirements (1-12)
 
-A evolução do protótipo é guiada por 12 requisitos organizados e avaliados no notebook:
+The prototype's development is guided by 12 requirements, organized and evaluated in the notebook:
 
-1. **Requisito 1: Expansão da Base de Conhecimento**
-   * Ampliação do corpus para mais de 20 artigos do Portal Diversa, englobando temas como autismo (TEA), TDAH, deficiência visual, auditiva, intelectual, tecnologia assistiva, AEE e legislação.
-2. **Requisito 2: Controle de Anti-Alucinação**
-   * Configuração de diretivas no prompt de sistema para proibir a invenção de títulos de artigos e links (URLs), reforçando que o modelo se limite aos trechos recuperados.
-3. **Requisito 3: Bateria de Testes Automatizada**
-   * Criação e documentação de um conjunto de testes estruturado avaliando respostas corretas, redirecionamentos de escopo e possíveis falhas.
-4. **Requisito 4: Avaliação de Ética e Riscos**
-   * Análise de conformidade ética, limitações do assistente em produção e mitigação de riscos em ambiente pedagógico real.
-5. **Requisito 5: Escolha e Configuração do Modelo**
-   * Justificativa da escolha do modelo (`llama-3.1-8b-instant` ou equivalentes), limites de requisições gratuitas (Rate Limits) e controle de erros.
-6. **Requisito 6: Estilização da Interface de Usuário**
-   * Implementação visual da interface com folhas de estilo personalizadas (CSS) e referências visuais da Equipe Hélice.
-7. **Requisito 7: Parametrização por Perfil de Usuário**
-   * Personalização de respostas (temperatura, limites de tokens) de acordo com o perfil selecionado (Professor, Família, Gestor).
-8. **Requisito 8: Controles Dinâmicos no Gradio**
-   * Utilização de elementos de interface como dropdowns, botões e controles de seleção de perfil.
-9. **Requisito 9: Histórico e Persistência de Conversação**
-   * Implementação de histórico persistente e controle de contexto isolado por perfil do usuário durante a sessão.
-10. **Requisito 10: Métricas de Uso e Dashboards**
-    * Registro em tempo real de logs (`timestamp`, `perfil`, `pergunta`, `titulo_artigo`, `artigos_recuperados`, `score_similaridade`) e visualização via Boxplot e tabelas analíticas.
-11. **Requisito 11: Busca Semântica Avançada (Embeddings)**
-    * Implementação de vetorização semântica usando embeddings multilíngues via API do HuggingFace para suporte a sinônimos.
-12. **Requisito 12: Benchmark de Modelos e Fallback**
-    * Testes de performance comparativos de latência e qualidade entre modelos da Groq.
+1. **Requirement 1: Expand the Knowledge Base**
+   * Expand the corpus to more than 20 articles from the Diversa Portal, covering topics such as autism (ASD), ADHD, visual, hearing, and intellectual disabilities, assistive technology, specialized educational services, and legislation.
+2. **Requirement 2: Hallucination Mitigation**
+   * Add system prompt instructions that prevent the model from inventing article titles and URLs and require it to stay grounded in retrieved excerpts.
+3. **Requirement 3: Automated Test Suite**
+   * Create and document a structured test suite covering correct answers, out-of-scope redirects, and potential failures.
+4. **Requirement 4: Ethics and Risk Assessment**
+   * Assess ethical compliance, production limitations, and risk mitigation in real educational settings.
+5. **Requirement 5: Model Selection and Configuration**
+   * Document the choice of model (`llama-3.1-8b-instant` or equivalent), free-tier rate limits, and error handling.
+6. **Requirement 6: User Interface Styling**
+   * Style the interface with custom CSS and visual references from Team Hélice.
+7. **Requirement 7: User Profile Configuration**
+   * Tailor responses (temperature and token limits) to the selected profile (teacher, family, or administrator).
+8. **Requirement 8: Dynamic Gradio Controls**
+   * Use interface elements such as dropdowns, buttons, and profile selectors.
+9. **Requirement 9: Conversation History and Persistence**
+   * Persist conversation history and isolate session context by user profile.
+10. **Requirement 10: Usage Metrics and Dashboards**
+    * Record logs in real time (`timestamp`, `profile`, `question`, `article_title`, `retrieved_articles`, `similarity_score`) and visualize them with box plots and analytical tables.
+11. **Requirement 11: Advanced Semantic Search (Embeddings)**
+    * Use multilingual embeddings through the Hugging Face API to support semantic search and synonyms.
+12. **Requirement 12: Model Benchmarking and Fallback**
+    * Compare Groq models for latency and response quality.
 
 ---
 
-## 🛠️ Recursos Adicionais
-* **`style.css`**: Folha de estilo CSS utilizada para a customização estética premium da interface Gradio.
-* **`imagens_do_tcc/`**: Contém elementos gráficos essenciais do chat, como o cordão de quebra-cabeça (TEA) e ícones da Equipe Hélice.
-* **`artigos.csv`**: Base de conhecimento estruturada do Portal Diversa.
+## Additional Resources
+* **`style.css`**: CSS stylesheet used to customize the Gradio interface.
+* **`imagens_do_tcc/`**: Graphics used in the chat interface, including autism-related imagery and Team Hélice icons.
+* **`artigos.csv`**: Structured knowledge base from the Diversa Portal.
