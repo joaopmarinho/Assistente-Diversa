@@ -1,6 +1,7 @@
 # Assistente Diversa
 
-Chatbot sobre educação inclusiva, desenvolvido pela **Team Hélice** (SoulCode Academy / Accenture). O projeto usa uma API FastAPI e uma interface React, executadas localmente com Docker Compose.
+Educational chatbot developed by **Team Hélice** (SoulCode Academy / Accenture). 
+
 # Assistente Diversa — Inclusive Education
 
 A RAG chatbot about inclusive education, based on articles from the [Diversa Portal](https://diversa.org.br/). Graduation project by **Team Hélice** (SoulCode Academy / Accenture).
@@ -63,30 +64,30 @@ Environment variables (or `.env`):
 | `RATE_LIMIT_POR_MINUTO` | `20` | Requests per IP on `/api/chat` |
 | `MAX_CHARS_PERGUNTA` | `1000` | Maximum question length |
 
-## Executar com Docker
+## Docker config
 
-Pré-requisito: Docker com Docker Compose.
+Requirement: Docker w/ Docker Compose.
 
-Na raiz do projeto, execute:
+On the root folder, execute:
 
 ```bash
 docker compose up --build
 ```
 
-Acesse:
+Access:
 
 - Interface: http://localhost:5173
 - API: http://localhost:8000
-- Status da API: http://localhost:8000/api/health
+- API Status: http://localhost:8000/api/health
 
-Para encerrar, pressione `Ctrl+C` e execute `docker compose down`.
+You can shutdown by pressing `Ctrl+C` and executing `docker compose down`.
 
-### Chave Groq (opcional)
+### Chave Groq (optional)
 
-Sem chave, a API funciona em modo demonstração. Para habilitar respostas via Groq, crie `.env` na raiz a partir do arquivo de exemplo e informe sua chave:
+The API runs in demo mode without a key. To configure your Groq API key, create a `.env` on the root folder following the `.env.example`  and placing your key:
 
 ```bash
 cp .env.example .env
 ```
 
-Edite `.env` e substitua `your_key_here` em `GROQ_KEY` pela sua chave. Depois, inicie ou reinicie os contêineres com `docker compose up --build`.
+Edit `.env` e replace `your_key_here` in `GROQ_KEY` for your key. Then, start or restart the conteiners `docker compose up --build`.
